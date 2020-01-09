@@ -28,20 +28,24 @@ nb_classes = y_train.shape[1]
 
 # Here's a Deep Dumb MLP (DDMLP)
 model = Sequential()
-model.add(Dense(128, input_dim=input_dim))
+model.add(Dense(512, input_dim=input_dim))
 model.add(Activation('relu'))
-model.add(Dropout(0.15))
-model.add(Dense(128))
+model.add(Dropout(0.25))
+model.add(Dense(512))
 model.add(Activation('relu'))
-model.add(Dropout(0.15))
+model.add(Dropout(0.25))
+model.add(Dense(256))
+model.add(Activation('relu'))
+model.add(Dropout(0.25))
 model.add(Dense(nb_classes))
 model.add(Activation('softmax'))
 
 # we'll use categorical xent for the loss, and RMSprop as the optimizer
-model.compile(loss='categorical_crossentropy', optimizer='rmsprop', metrics=['accuracy'])
+# adam optimizer is better
+model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
 print("Training...")
-model.fit(X_train, y_train, epochs=10, batch_size=16, validation_split=0.1, verbose=2)
+model.fit(X_train, y_train, epochs=50, batch_size=32, validation_split=0.1, verbose=2)
 
 print("Generating test predictions...")
 preds = model.predict_classes(X_test, verbose=0)
