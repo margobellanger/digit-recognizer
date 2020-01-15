@@ -6,10 +6,10 @@ import pandas as pd
 import numpy as np
 
 # Read data
-train = pd.read_csv('input/train.csv')
+train = pd.read_csv('../input/train.csv')
 labels = train.ix[:,0].values.astype('int32')
 X_train = (train.ix[:,1:].values).astype('float32')
-X_test = (pd.read_csv('input/test.csv').values).astype('float32')
+X_test = (pd.read_csv('../input/test.csv').values).astype('float32')
 
 # convert list of labels to binary class matrix
 y_train = np_utils.to_categorical(labels)
