@@ -43,8 +43,8 @@ y_train = keras.utils.to_categorical(y_train, num_labels)
 y_val = keras.utils.to_categorical(y_val, num_labels)
 
 # Training parameters
-training_epochs = 500
-batch_size = 200
+training_epochs = 100
+batch_size = 170
 
 # Input Parameters
 n_input = 784  # number of images
@@ -64,9 +64,8 @@ x = Dropout(0.4)(x)
 x = Dense(n_hidden_4, activation='relu', name="Hidden_Layer_4")(x)
 output = Dense(num_labels, activation='softmax', name="Output_Layer")(x)
 
-# Our model would have '6' layers - input layer, 4 hidden layer and 1 output layer
 model = Model(Inp, output)
-model.summary()  # We have 297,910 parameters to estimate
+model.summary()
 
 model.compile(loss='categorical_crossentropy',
               optimizer='adam',

@@ -6,10 +6,10 @@ import pandas as pd
 import numpy as np
 
 # Get train and test data
-train = pd.read_csv('../input/train.csv')
+train = pd.read_csv('input/train.csv')
 labels = train.ix[:, 0].values.astype('int32')
 X_train = train.ix[:, 1:].values
-X_test = pd.read_csv('../input/test.csv').values
+X_test = pd.read_csv('input/test.csv').values
 
 # convert list of labels to categorical labels
 y_train = np_utils.to_categorical(labels)
@@ -47,7 +47,7 @@ model.add(Activation('softmax'))
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
 # Training
-model.fit(X_train, y_train, epochs=500, batch_size=200, validation_split=0.2, verbose=2)
+model.fit(X_train, y_train, epochs=100, batch_size=40, validation_split=0.2, verbose=2)
 
 # Testing
 predictions = model.predict_classes(X_test, verbose=0)
