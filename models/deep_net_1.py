@@ -12,7 +12,7 @@ np.random.seed(1215)
 # Get train and test data
 train = pd.read_csv('input/train.csv')
 test = pd.read_csv('input/test.csv')
-train_images = train.iloc[:, 1:785]
+train_images = train.iloc[:, 1:]
 train_labels = train.iloc[:, 0]
 test_images = test.iloc[:, 0:784]
 
@@ -43,8 +43,8 @@ y_train = keras.utils.to_categorical(y_train, num_labels)
 y_val = keras.utils.to_categorical(y_val, num_labels)
 
 # Training parameters
-training_epochs = 100
-batch_size = 170
+training_epochs = 500
+batch_size = 200
 
 # Input Parameters
 n_input = 784  # number of images
